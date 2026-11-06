@@ -1,0 +1,57 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>404 Page not found - Meson Systematics</title><meta name="robots" content="noindex"><style>
+:root{color-scheme:light dark;--bg:#F7F7FA;--sf:#fff;--ink:#1B1C1F;--ink2:#5D616B;--ln:#DADCE2;--red:#D32F2F;--yel:#E5A100;--blu:#1A56DB;--on:#fff}
+@media(prefers-color-scheme:dark){:root{--bg:#121212;--sf:#1E1E1E;--ink:#ECEDF0;--ink2:#A0A5B0;--ln:#34363C;--red:#FF7B72;--yel:#FFC83D;--blu:#8AB4FF;--on:#10131A}}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);color:var(--ink);font:400 16px/1.5 "Helvetica Neue",Helvetica,Arial,"Apple SD Gothic Neo","Noto Sans KR",sans-serif;-webkit-font-smoothing:antialiased}
+body{display:flex;flex-direction:column;min-height:100vh}
+main{flex:1}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blu);outline-offset:2px}
+.wrap{width:100%;max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
+.bar{display:flex;align-items:center;height:64px;border-bottom:1px solid var(--ln)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:600;font-size:14px;text-decoration:none}
+.mark{display:flex;gap:4px}
+.mark i{display:block;width:12px;height:12px}
+.mark i:nth-child(1){background:var(--red);border-radius:50%}
+.mark i:nth-child(2){background:var(--yel)}
+.mark i:nth-child(3){background:var(--blu);clip-path:polygon(50% 0,100% 100%,0 100%)}
+h1{font-weight:600;letter-spacing:-.02em;line-height:1.1}
+.lede{color:var(--ink2);max-width:56ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;height:40px;padding:0 24px;border:1px solid var(--ln);border-radius:20px;background:none;color:var(--ink);font-family:inherit;font-size:14px;font-weight:600;text-decoration:none;cursor:pointer}
+.btn:hover{background:color-mix(in srgb,var(--blu) 8%,transparent)}
+.btn.fill{background:var(--blu);border-color:var(--blu);color:var(--on)}
+.btn.fill:hover{filter:brightness(1.08)}
+footer{border-top:1px solid var(--ln);margin-top:96px;padding-top:24px;padding-bottom:40px;font-size:13px;color:var(--ink2);display:flex;flex-wrap:wrap;gap:8px 32px;justify-content:space-between}
+footer a{color:var(--ink);text-underline-offset:3px}
+
+.err{padding-top:clamp(40px,9vh,112px)}
+.code{display:flex;align-items:flex-end;font-size:clamp(96px,22vw,240px);font-weight:600;line-height:.85;letter-spacing:-.05em}
+.o{display:inline-block;width:.62em;height:.62em;margin:0 .07em .02em;border-radius:50%;background:var(--red)}
+.err h1{font-size:clamp(28px,4vw,40px);margin:40px 0 12px}
+.err .lede{font-size:18px}
+.pg{height:2px;max-width:56ch;margin:40px 0 12px;background:var(--ln)}
+.pg i{display:block;height:100%;width:100%;background:var(--blu)}
+#cd{font-size:14px;color:var(--ink2)}
+.act{display:flex;flex-wrap:wrap;gap:12px;margin-top:24px}
+@media(prefers-reduced-motion:reduce){.pg{display:none}}
+</style></head><body><header class="wrap bar"><a class="brand" href="/"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Meson Systematics</a></header>
+<main class="wrap err">
+<div class="code" role="img" aria-label="Error 404"><span>4</span><span class="o"></span><span>4</span></div>
+<h1>Page not found</h1>
+<p class="lede">This address doesn't exist on this server. Check the spelling of the URL, or start from the service index.</p>
+<div class="pg" aria-hidden="true"><i id="pb"></i></div>
+<p id="cd"></p>
+<div class="act"><a class="btn fill" href="/">Go to service index</a><button class="btn" id="stay" type="button">Stay on this page</button></div>
+</main>
+<script>
+(function(){
+var n=10,home="/",cd=document.getElementById("cd"),pb=document.getElementById("pb");
+function say(){cd.textContent="Returning to the service index in "+n+" second"+(n===1?"":"s")+"."}
+say();
+requestAnimationFrame(function(){pb.style.transition="width 10s linear";pb.style.width="0"});
+var t=setInterval(function(){n--;if(n<=0){clearInterval(t);location.href=home;return}say()},1000);
+document.getElementById("stay").onclick=function(){clearInterval(t);pb.style.transition="none";pb.style.width="100%";cd.textContent="Automatic redirect cancelled."};
+var r=document.getElementById("retry");if(r)r.onclick=function(){location.reload()};
+})();
+</script>
+<footer class="wrap"><span>Powered by Meson Systematics</span><span>Admin <a href="mailto:june@meson.one">june@meson.one</a></span></footer></body></html>
