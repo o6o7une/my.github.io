@@ -69,17 +69,9 @@ section{margin-bottom:56px}
 .empty p{color:var(--ink2);margin-bottom:24px}
 @media(max-width:880px){.main{grid-template-columns:1fr;gap:24px}.rail{position:static;flex-direction:row;overflow-x:auto;gap:8px;padding-bottom:8px}.rail button{width:auto;flex:none;height:40px;border:1px solid var(--ln)}}
 @media(max-width:560px){.mt{display:none}.hero{margin-top:40px}}
-</style>
-  
-<link rel="icon" type="image/png" href="https://cdn.meson.one/f/my.wonjun.me/favicon-96x96.png" sizes="96x96" />
-<link rel="icon" type="image/svg+xml" href="https://cdn.meson.one/f/my.wonjun.me/favicon.svg" />
-<link rel="shortcut icon" href="https://cdn.meson.one/f/my.wonjun.me/favicon.ico" />
-<link rel="apple-touch-icon" sizes="180x180" href="https://cdn.meson.one/f/my.wonjun.me/apple-touch-icon.png" />
-<link rel="manifest" href="https://cdn.meson.one/f/my.wonjun.me/site.webmanifest" />
-
-</head><body><header class="wrap bar"><a class="brand" href="/"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Meson Systematics</a></header>
+</style></head><body><header class="wrap bar"><a class="brand" href="/"><span class="mark" aria-hidden="true"><i></i><i></i><i></i></span>Meson Systematics</a></header>
 <main class="wrap">
-<h1 class="hero">June's Service Index</h1>
+<h1 class="hero">Service index</h1>
 <p class="lede">The services running on the Meson servers, grouped by what each one does. Change the grouping to browse by server, domain or name.</p>
 <div class="tools">
 <label class="search"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><input id="q" type="search" placeholder="Search services" aria-label="Search services" autocomplete="off"></label>
@@ -112,9 +104,9 @@ domain:{k:i=>i.dm,o:k=>k,t:k=>k,s:k=>"",m:i=>D.servers[i.s].n,c:(a,b)=>a.h.local
 name:{k:ini,o:k=>k,t:k=>k,s:k=>"",m:i=>C[i.c].name,c:nm}
 };
 const hit=i=>!st.q||[i.n,i.h,i.a,C[i.c].name,D.servers[i.s].n].join(" ").toLowerCase().includes(st.q);
-const row=(i,m)=>{const l=(i.n.match(/[A-Za-z0-9\u00C0-\uFFFF]/)||["?"])[0];
+const row=(i,m)=>{const fav="https://"+i.h+"/favicon.ico";const l=(i.n.match(/[A-Za-z0-9\u00C0-\uFFFF]/)||["?"])[0];
 const app=i.a?i.a+(i.d?", Docker":""):(i.d?"Docker":"");
-return `<a class="it" href="${esc(i.u)}" target="_blank" rel="noopener"><span class="tile"><b>${esc(l)}</b>${i.i?`<img src="${esc(i.i)}" alt="" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="this.remove()">`:""}</span><span class="tx"><span class="t">${esc(i.n)}</span><span class="h">${esc(i.h)}</span></span><span class="mt">${esc(m.m(i))}<br>${esc(app)}</span></a>`};
+return `<a class="it" href="${esc(i.u)}" target="_blank" rel="noopener"><span class="tile"><b>${esc(l)}</b><img src="${esc(fav)}" data-f="${esc(i.i||"")}" alt="" loading="lazy" onload="this.parentNode.classList.add('ok')" onerror="var f=this.dataset.f;if(f){this.dataset.f='';this.src=f}else this.remove()"></span><span class="tx"><span class="t">${esc(i.n)}</span><span class="h">${esc(i.h)}</span></span><span class="mt">${esc(m.m(i))}<br>${esc(app)}</span></a>`};
 function draw(){
 const m=M[st.g];
 const base=D.items.filter(i=>(!st.d||i.d)&&hit(i));
